@@ -128,4 +128,14 @@
   .lista {
     padding: 0 10px;
   }
+.boton-toggle {
+  margin: 20px auto;
+  display: block;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1f3864;
+  color: white;
+  cursor: pointer;
+}
 }

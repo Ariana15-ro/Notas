@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+
+  const [mostrarFormulario, setMostrarFormulario] = useState(false)
 
   const notas = [
     {
@@ -40,23 +43,38 @@ function App() {
 
       </header>
 
-      <section className="formulario">
+      <button
+        className="boton-toggle"
+        onClick={() =>
+          setMostrarFormulario(!mostrarFormulario)
+        }
+      >
+        {mostrarFormulario
+          ? 'Ocultar formulario'
+          : 'Agregar nota'}
+      </button>
 
-        <h2 className="formulario__titulo">
-          Nueva nota
-        </h2>
+      {mostrarFormulario && (
 
-        <input
-          className="formulario__input"
-          type="text"
-          placeholder="Escribe una nota..."
-        />
+        <section className="formulario">
 
-        <button className="formulario__boton">
-          Guardar
-        </button>
+          <h2 className="formulario__titulo">
+            Nueva nota
+          </h2>
 
-      </section>
+          <input
+            className="formulario__input"
+            type="text"
+            placeholder="Escribe una nota..."
+          />
+
+          <button className="formulario__boton">
+            Guardar
+          </button>
+
+        </section>
+
+      )}
 
       <ul className="lista">
 
@@ -90,9 +108,11 @@ function App() {
       </ul>
 
       <footer className="pie">
+
         <p className="pie__texto">
           Creado por Ariana · SENA 2026
         </p>
+
       </footer>
 
     </div>
