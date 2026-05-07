@@ -60,6 +60,49 @@
   cursor: pointer;
 }
 
+/* BOTON TOGGLE */
+
+.boton-toggle {
+  margin: 20px auto;
+  display: block;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1f3864;
+  color: white;
+  cursor: pointer;
+}
+
+.texto-preview {
+  margin-top: 10px;
+  color: #666;
+}
+
+/* FILTROS */
+
+.filtros {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 0 16px;
+}
+
+.filtros button {
+  padding: 8px 16px;
+  border: 1px solid #1f3864;
+  border-radius: 20px;
+  background: white;
+  color: #1f3864;
+  cursor: pointer;
+}
+
+.filtro-activo {
+  background-color: #1f3864 !important;
+  color: white !important;
+}
+
 /* LISTA */
 
 .lista {
@@ -99,6 +142,26 @@
   font-size: 12px;
 }
 
+.item__acciones {
+  display: flex;
+  gap: 8px;
+  margin-right: 10px;
+}
+
+.boton-accion {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.boton-eliminar {
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+
 /* PIE */
 
 .pie {
@@ -114,7 +177,6 @@
 /* RESPONSIVE */
 
 @media (max-width: 600px) {
-
   .encabezado__titulo {
     font-size: 22px;
   }
@@ -128,22 +190,4 @@
   .lista {
     padding: 0 10px;
   }
-.boton-toggle {
-  margin: 20px auto;
-  display: block;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 6px;
-  background-color: #1f3864;
-  color: white;
-  cursor: pointer;
-}
-
-.texto-preview {
-  margin-top: 10px;
-  color: #666;
-}
-
-
-
 }

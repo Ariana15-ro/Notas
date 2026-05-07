@@ -6,27 +6,7 @@ function App() {
   const [mostrarFormulario, setMostrarFormulario] = useState(false)
 
   const [nuevaNota, setNuevaNota] = useState("")
-
-  const manejarEnvio = (evento) => {
-
-    evento.preventDefault()
-
-    if (nuevaNota.trim() === "") {
-      alert("Por favor escribe una nota")
-      return
-    }
-
-    const nueva = {
-      id: Date.now(),
-      titulo: nuevaNota,
-      fecha: 'Hoy',
-      importante: false
-    }
-
-    setNotas([nueva, ...notas])
-
-    setNuevaNota("")
-  }
+  const [filtro, setFiltro] = useState('todos')
 
   const [notas, setNotas] = useState([
     {
@@ -50,6 +30,43 @@ function App() {
       importante: true
     }
   ])
+
+  const manejarEnvio = (evento) => {
+
+    evento.preventDefault()
+
+    if (nuevaNota.trim() === "") {
+      alert("Por favor escribe una nota")
+      return
+    }
+
+    const nueva = {
+      id: Date.now(),
+      titulo: nuevaNota,
+      fecha: 'Hoy',
+      importante: false
+    }
+
+    setNotas([nueva, ...notas])
+
+    setNuevaNota("")
+  }
+
+  const eliminarNota = (id) => {
+    setNotas(notas.filter(nota => nota.id !== id))
+  }
+
+  const toggleImportante = (id) => {
+    setNotas(notas.map(nota => 
+      nota.id === id ? { ...nota, importante: !nota.importante } : nota
+    ))
+  }
+
+  const notasFiltradas = notas.filter(nota => {
+    if (filtro === 'importantes') return nota.importante
+    if (filtro === 'normales') return !nota.importante
+    return true
+  })
 
   return (
     <div className="app">
@@ -113,9 +130,30 @@ function App() {
 
       )}
 
+      <div className="filtros">
+        <button 
+          className={filtro === 'todos' ? 'filtro-activo' : ''}
+          onClick={() => setFiltro('todos')}
+        >
+          Todos
+        </button>
+        <button 
+          className={filtro === 'importantes' ? 'filtro-activo' : ''}
+          onClick={() => setFiltro('importantes')}
+        >
+          Importantes
+        </button>
+        <button 
+          className={filtro === 'normales' ? 'filtro-activo' : ''}
+          onClick={() => setFiltro('normales')}
+        >
+          Normales
+        </button>
+      </div>
+
       <ul className="lista">
 
-        {notas.map(nota => (
+        {notasFiltradas.map(nota => (
 
           <article
             className="item"
@@ -132,6 +170,22 @@ function App() {
                 {nota.fecha}
               </p>
 
+            </div>
+
+            <div className="item__acciones">
+              <button 
+                className="boton-accion"
+                onClick={() => toggleImportante(nota.id)}
+              >
+                {nota.importante ? '★' : '☆'}
+              </button>
+              
+              <button 
+                className="boton-accion boton-eliminar"
+                onClick={() => eliminarNota(nota.id)}
+              >
+                ✕
+              </button>
             </div>
 
             <span className="item__estado">
