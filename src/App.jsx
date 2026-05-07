@@ -1,121 +1,101 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const notas = [
+    {
+      id: 1,
+      titulo: 'Estudiar React',
+      fecha: '07 Mayo 2026',
+      importante: true
+    },
+
+    {
+      id: 2,
+      titulo: 'Hacer actividad de ingles',
+      fecha: '08 Mayo 2026',
+      importante: false
+    },
+
+    {
+      id: 3,
+      titulo: 'Preparar exposicion',
+      fecha: '10 Mayo 2026',
+      importante: true
+    }
+  ]
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
+    <div className="app">
+
+      <header className="encabezado">
+
+        <h1 className="encabezado__titulo">
+          Mis Notas
+        </h1>
+
+        <p className="encabezado__subtitulo">
+          Organiza tus apuntes diarios
+        </p>
+
+      </header>
+
+      <section className="formulario">
+
+        <h2 className="formulario__titulo">
+          Nueva nota
+        </h2>
+
+        <input
+          className="formulario__input"
+          type="text"
+          placeholder="Escribe una nota..."
+        />
+
+        <button className="formulario__boton">
+          Guardar
         </button>
+
       </section>
 
-      <div className="ticks"></div>
+      <ul className="lista">
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        {notas.map(nota => (
+          <article
+            className="item"
+            key={nota.id}
+          >
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+            <div>
+
+              <h3 className="item__titulo">
+                {nota.titulo}
+              </h3>
+
+              <p className="item__fecha">
+                {nota.fecha}
+              </p>
+
+            </div>
+
+            <span className="item__estado">
+              {nota.importante ? 'Importante' : 'Normal'}
+            </span>
+
+          </article>
+        ))}
+
+      </ul>
+
+      <footer className="pie">
+
+        <p className="pie__texto">
+          Creado por Ariana · SENA 2026
+        </p>
+
+      </footer>
+
+    </div>
   )
 }
 
