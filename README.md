@@ -1,18 +1,36 @@
-# React + Vite
+# 🗒️ Mis Ideas - App de Notas React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación moderna para crear, editar y gestionar notas con React.
 
-Currently, two official plugins are available:
+## ✨ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- ✅ **Crear notas** - Agrega nuevas notas con título
+- ✅ **Editar notas** - Modifica el contenido de cualquier nota
+- ✅ **Eliminar notas** - Borra notas que ya no necesites
+- ✅ **Marcar importantes** - Destaca notas importantes
+- ✅ **Filtrar notas** - Filtra por todas, importantes o normales
+- ✅ **Persistencia** - Los datos se guardan en localStorage
 
-## React Compiler
+## 🛠️ Tecnologías
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- React 18
+- Vite
+- CSS3 (diseño responsive)
 
-Note: This will impact Vite dev & build performances.
+## 🚀 Cómo ejecutar
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Abre http://localhost:5173 en tu navegador.
+
+## 📁 Estructura
+
+```
+src/
+  ├── App.jsx      # Componente principal
+  ├── App.css      # Estilos
+  └── main.jsx     # Punto de entrada
+```

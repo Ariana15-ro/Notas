@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
@@ -9,28 +9,35 @@ function App() {
   const [filtro, setFiltro] = useState('todos')
   const [editandoId, setEditandoId] = useState(null)
 
-  const [notas, setNotas] = useState([
-    {
-      id: 1,
-      titulo: 'Estudiar React',
-      fecha: '07 Mayo 2026',
-      importante: true
-    },
+  const [notas, setNotas] = useState(() => {
+    const guardadas = localStorage.getItem('notas')
+    return guardadas ? JSON.parse(guardadas) : [
+      {
+        id: 1,
+        titulo: 'Estudiar React',
+        fecha: '07 Mayo 2026',
+        importante: true
+      },
 
-    {
-      id: 2,
-      titulo: 'Hacer actividad de ingles',
-      fecha: '08 Mayo 2026',
-      importante: false
-    },
+      {
+        id: 2,
+        titulo: 'Hacer actividad de ingles',
+        fecha: '08 Mayo 2026',
+        importante: false
+      },
 
-    {
-      id: 3,
-      titulo: 'Preparar exposicion',
-      fecha: '10 Mayo 2026',
-      importante: true
-    }
-  ])
+      {
+        id: 3,
+        titulo: 'Preparar exposicion',
+        fecha: '10 Mayo 2026',
+        importante: true
+      }
+    ]
+  })
+
+  useEffect(() => {
+    localStorage.setItem('notas', JSON.stringify(notas))
+  }, [notas])
 
   const manejarEnvio = (evento) => {
 
@@ -90,13 +97,13 @@ function App() {
 
       <header className="encabezado">
 
-        <h1 className="encabezado__titulo">
-          Mis Notas
-        </h1>
+<h1 className="encabezado__titulo">
+            Mis Ideas
+           </h1>
 
-        <p className="encabezado__subtitulo">
-          Organiza tus apuntes diarios
-        </p>
+<p className="encabezado__subtitulo">
+            Tu espacio para ideas brillantes
+           </p>
 
       </header>
 
