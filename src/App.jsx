@@ -1,10 +1,35 @@
 import './App.css'
 
 function App() {
+
+  const notas = [
+    {
+      id: 1,
+      titulo: 'Estudiar React',
+      fecha: '07 Mayo 2026',
+      importante: true
+    },
+
+    {
+      id: 2,
+      titulo: 'Hacer actividad de ingles',
+      fecha: '08 Mayo 2026',
+      importante: false
+    },
+
+    {
+      id: 3,
+      titulo: 'Preparar exposicion',
+      fecha: '10 Mayo 2026',
+      importante: true
+    }
+  ]
+
   return (
     <div className="app">
 
       <header className="encabezado">
+
         <h1 className="encabezado__titulo">
           Mis Notas
         </h1>
@@ -12,6 +37,7 @@ function App() {
         <p className="encabezado__subtitulo">
           Organiza tus apuntes diarios
         </p>
+
       </header>
 
       <section className="formulario">
@@ -31,6 +57,37 @@ function App() {
         </button>
 
       </section>
+
+      <ul className="lista">
+
+        {notas.map(nota => (
+
+          <article
+            className="item"
+            key={nota.id}
+          >
+
+            <div>
+
+              <h3 className="item__titulo">
+                {nota.titulo}
+              </h3>
+
+              <p className="item__fecha">
+                {nota.fecha}
+              </p>
+
+            </div>
+
+            <span className="item__estado">
+              {nota.importante ? 'Importante' : 'Normal'}
+            </span>
+
+          </article>
+
+        ))}
+
+      </ul>
 
       <footer className="pie">
         <p className="pie__texto">
