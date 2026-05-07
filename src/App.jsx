@@ -4,8 +4,31 @@ import './App.css'
 function App() {
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false)
+
   const [nuevaNota, setNuevaNota] = useState("")
-  const notas = [
+
+  const manejarEnvio = (evento) => {
+
+    evento.preventDefault()
+
+    if (nuevaNota.trim() === "") {
+      alert("Por favor escribe una nota")
+      return
+    }
+
+    const nueva = {
+      id: Date.now(),
+      titulo: nuevaNota,
+      fecha: 'Hoy',
+      importante: false
+    }
+
+    setNotas([nueva, ...notas])
+
+    setNuevaNota("")
+  }
+
+  const [notas, setNotas] = useState([
     {
       id: 1,
       titulo: 'Estudiar React',
@@ -26,7 +49,7 @@ function App() {
       fecha: '10 Mayo 2026',
       importante: true
     }
-  ]
+  ])
 
   return (
     <div className="app">
@@ -56,7 +79,10 @@ function App() {
 
       {mostrarFormulario && (
 
-        <section className="formulario">
+        <form
+          className="formulario"
+          onSubmit={manejarEnvio}
+        >
 
           <h2 className="formulario__titulo">
             Nueva nota
@@ -71,15 +97,19 @@ function App() {
             }
             placeholder="Escribe una nota..."
           />
+
           <p className="texto-preview">
             Escribiendo: {nuevaNota}
           </p>
 
-          <button className="formulario__boton">
+          <button
+            type="submit"
+            className="formulario__boton"
+          >
             Guardar
           </button>
 
-        </section>
+        </form>
 
       )}
 
@@ -125,8 +155,5 @@ function App() {
     </div>
   )
 }
-
-
-
 
 export default App
