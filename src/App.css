@@ -1,4 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .app {
   min-height: 100vh;
   background-color: #f4f4f4;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+  background-color: #1f3864;
+  color: white;
+  padding: 24px;
+  text-align: center;
+}
+
+/* FORMULARIO */
+
+.formulario {
+  background-color: white;
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.formulario__input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+/* PIE */
+
+.pie {
+  text-align: center;
+  padding: 20px;
 }
