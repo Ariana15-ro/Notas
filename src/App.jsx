@@ -7,6 +7,7 @@ function App() {
 
   const [nuevaNota, setNuevaNota] = useState("")
   const [filtro, setFiltro] = useState('todos')
+  const [editandoId, setEditandoId] = useState(null)
 
   const [notas, setNotas] = useState([
     {
@@ -40,16 +41,32 @@ function App() {
       return
     }
 
-    const nueva = {
-      id: Date.now(),
-      titulo: nuevaNota,
-      fecha: 'Hoy',
-      importante: false
+    if (editandoId !== null) {
+      setNotas(notas.map(nota => 
+        nota.id === editandoId ? { ...nota, titulo: nuevaNota } : nota
+      ))
+      setEditandoId(null)
+    } else {
+      const nueva = {
+        id: Date.now(),
+        titulo: nuevaNota,
+        fecha: 'Hoy',
+        importante: false
+      }
+
+      setNotas([nueva, ...notas])
     }
 
-    setNotas([nueva, ...notas])
-
     setNuevaNota("")
+  }
+
+  const editarNota = (id) => {
+    const nota = notas.find(n => n.id === id)
+    if (nota) {
+      setNuevaNota(nota.titulo)
+      setEditandoId(id)
+      setMostrarFormulario(true)
+    }
   }
 
   const eliminarNota = (id) => {
@@ -101,9 +118,9 @@ function App() {
           onSubmit={manejarEnvio}
         >
 
-          <h2 className="formulario__titulo">
-            Nueva nota
-          </h2>
+<h2 className="formulario__titulo">
+             {editandoId !== null ? 'Editar nota' : 'Nueva nota'}
+           </h2>
 
           <input
             className="formulario__input"
@@ -119,12 +136,12 @@ function App() {
             Escribiendo: {nuevaNota}
           </p>
 
-          <button
-            type="submit"
-            className="formulario__boton"
-          >
-            Guardar
-          </button>
+<button
+             type="submit"
+             className="formulario__boton"
+           >
+             {editandoId !== null ? 'Guardar cambios' : 'Agregar nota'}
+           </button>
 
         </form>
 
@@ -173,20 +190,27 @@ function App() {
             </div>
 
 <div className="item__acciones">
-               <button 
-                 className={nota.importante ? "boton-accion boton-importante-activo" : "boton-accion boton-importante"}
-                 onClick={() => toggleImportante(nota.id)}
-               >
-                 {nota.importante ? '★ Quitar importante' : '☆ Marcar importante'}
-               </button>
-               
-               <button 
-                 className="boton-accion boton-eliminar"
-                 onClick={() => eliminarNota(nota.id)}
-               >
-                 ✕
-               </button>
-             </div>
+              <button 
+                className={nota.importante ? "boton-accion boton-importante-activo" : "boton-accion boton-importante"}
+                onClick={() => toggleImportante(nota.id)}
+              >
+                {nota.importante ? '★ Quitar importante' : '☆ Marcar importante'}
+              </button>
+              
+              <button 
+                className="boton-accion boton-editar"
+                onClick={() => editarNota(nota.id)}
+              >
+                ✎
+              </button>
+              
+              <button 
+                className="boton-accion boton-eliminar"
+                onClick={() => eliminarNota(nota.id)}
+              >
+                ✕
+              </button>
+            </div>
 
              <span className={nota.importante ? "item__estado item__estado--importante" : "item__estado"}>
                {nota.importante ? 'Importante' : 'Normal'}

@@ -176,6 +176,11 @@
   border-color: #d32f2f;
 }
 
+.boton-editar {
+  color: #1f3864;
+  border-color: #1f3864;
+}
+
 /* PIE */
 
 .pie {
