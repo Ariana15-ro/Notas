@@ -100,16 +100,20 @@ function App() {
 
       </header>
 
-      <button
-        className="boton-toggle"
-        onClick={() =>
-          setMostrarFormulario(!mostrarFormulario)
-        }
-      >
-        {mostrarFormulario
-          ? 'Ocultar formulario'
-          : 'Agregar nota'}
-      </button>
+<button
+         className="boton-toggle"
+         onClick={() => {
+           setMostrarFormulario(!mostrarFormulario)
+           if (editandoId !== null) {
+             setEditandoId(null)
+             setNuevaNota("")
+           }
+         }}
+       >
+         {mostrarFormulario
+           ? '✕ Cancelar'
+           : '+ Agregar nota'}
+       </button>
 
       {mostrarFormulario && (
 
@@ -122,21 +126,17 @@ function App() {
              {editandoId !== null ? 'Editar nota' : 'Nueva nota'}
            </h2>
 
-          <input
-            className="formulario__input"
-            type="text"
-            value={nuevaNota}
-            onChange={(e) =>
-              setNuevaNota(e.target.value)
-            }
-            placeholder="Escribe una nota..."
-          />
+<input
+             className="formulario__input"
+             type="text"
+             value={nuevaNota}
+             onChange={(e) =>
+               setNuevaNota(e.target.value)
+             }
+             placeholder="Escribe una nota..."
+           />
 
-          <p className="texto-preview">
-            Escribiendo: {nuevaNota}
-          </p>
-
-<button
+           <button
              type="submit"
              className="formulario__boton"
            >
