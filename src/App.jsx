@@ -4,7 +4,7 @@ import './App.css'
 function App() {
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false)
-
+  const [nuevaNota, setNuevaNota] = useState("")
   const notas = [
     {
       id: 1,
@@ -65,8 +65,15 @@ function App() {
           <input
             className="formulario__input"
             type="text"
+            value={nuevaNota}
+            onChange={(e) =>
+              setNuevaNota(e.target.value)
+            }
             placeholder="Escribe una nota..."
           />
+          <p className="texto-preview">
+            Escribiendo: {nuevaNota}
+          </p>
 
           <button className="formulario__boton">
             Guardar
@@ -118,5 +125,8 @@ function App() {
     </div>
   )
 }
+
+
+
 
 export default App
