@@ -142,6 +142,11 @@
   font-size: 12px;
 }
 
+.item__estado--importante {
+  background-color: #e53935;
+  color: white;
+}
+
 .item__acciones {
   display: flex;
   gap: 8px;
@@ -154,7 +159,16 @@
   border-radius: 4px;
   padding: 4px 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+}
+
+.boton-importante {
+  color: #666;
+}
+
+.boton-importante-activo {
+  color: #ffd700;
+  border-color: #ffd700;
 }
 
 .boton-eliminar {

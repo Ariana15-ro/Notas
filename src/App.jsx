@@ -172,25 +172,25 @@ function App() {
 
             </div>
 
-            <div className="item__acciones">
-              <button 
-                className="boton-accion"
-                onClick={() => toggleImportante(nota.id)}
-              >
-                {nota.importante ? '★' : '☆'}
-              </button>
-              
-              <button 
-                className="boton-accion boton-eliminar"
-                onClick={() => eliminarNota(nota.id)}
-              >
-                ✕
-              </button>
-            </div>
+<div className="item__acciones">
+               <button 
+                 className={nota.importante ? "boton-accion boton-importante-activo" : "boton-accion boton-importante"}
+                 onClick={() => toggleImportante(nota.id)}
+               >
+                 {nota.importante ? '★ Quitar importante' : '☆ Marcar importante'}
+               </button>
+               
+               <button 
+                 className="boton-accion boton-eliminar"
+                 onClick={() => eliminarNota(nota.id)}
+               >
+                 ✕
+               </button>
+             </div>
 
-            <span className="item__estado">
-              {nota.importante ? 'Importante' : 'Normal'}
-            </span>
+             <span className={nota.importante ? "item__estado item__estado--importante" : "item__estado"}>
+               {nota.importante ? 'Importante' : 'Normal'}
+             </span>
 
           </article>
 
